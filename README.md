@@ -2,7 +2,7 @@
 
 # 
 
-# \## Project Overview
+## Project Overview
 
 # This project analyses HR data from Salifort Motors to predict employee turnover and provide actionable recommendations to improve retention.  
 
