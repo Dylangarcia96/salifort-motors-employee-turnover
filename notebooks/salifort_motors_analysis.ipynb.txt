@@ -1,8 +1,81 @@
-{
-  "notebooks/salifort_motors_analysis.ipynb": {
-    "content": "# Salifort Motors: Employee Turnover Prediction Notebook\n\n## Plan Stage\n### 1. Import Libraries\n```python\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split, GridSearchCV\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, ConfusionMatrixDisplay, confusion_matrix, classification_report\n```\n\n### 2. Load Dataset\n```python\ndf = pd.read_csv('../data/HR_comma_sep.csv')\ndf.head()\n```\n\n---\n## Analyze Stage\n### 1. Data Cleaning\n```python\ndf.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')\ndf.drop_duplicates(inplace=True)\n```\n\n### 2. Exploratory Data Analysis\n- Distribution plots (satisfaction, evaluation, projects, etc.)\n- Correlation heatmap\n- Insights noted after each visualization\n\n---\n## Construct Stage\n### 1. Feature Engineering\n```python\nX = pd.get_dummies(df.drop('left', axis=1), drop_first=True)\ny = df['left']\nX_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=0.25, random_state=42)\n```\n\n### 2. Modeling\n- Logistic Regression\n- Decision Tree (GridSearchCV)\n- Random Forest (GridSearchCV)\n\nPerformance results summarized in a dataframe\n\n---\n## Execute Stage\n### 1. Champion Model: Random Forest\n- Confusion matrix\n- Feature importance barplot\n\n### 2. Recommendations\n- Reduce overtime\n- Balance projects\n- Increase promotions\n- Focus retention efforts early in tenure\n"
-  },
-  "requirements.txt": {
-    "content": "pandas\nnumpy\nmatplotlib\nseaborn\nscikit-learn\nxgboost\npickle-mixin"
-  }
-}
+# Salifort Motors Project.
+
+## PACE: Plan Stage
+### Step 1. Imports
+```python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pickle
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier, plot_importance
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score, ConfusionMatrixDisplay, confusion_matrix, classification_report, RocCurveDisplay
+
+```
+
+### Step 2. Load dataset
+```python
+df0 = pd.read_csv("../data/HR_comma_sep.csv")
+df0.head(10)
+```
+
+## PACE: Analyze Stage
+### Step 2. Data Exploration (Initial EDA & Cleaning)
+```python
+df0.info()
+df0.shape
+df0.describe()
+```
+#### Rename columns
+```python
+df1 = df0.rename(columns={
+    'Department': 'department',
+    'promotion_last_5years': 'promotion',
+    'satisfaction_level': 'satisfaction',
+    'average_montly_hours': 'average_monthly_hours',
+    'time_spend_company': 'tenure',
+    'Work_accident': 'work_accident'
+})
+```
+#### Missing values & duplicates
+```python
+df1.isnull().sum()
+df1.duplicated().sum()
+df2 = df1.drop_duplicates()
+```
+#### Outliers
+```python
+sns.boxplot(df2['tenure'])
+percentile25 = df2['tenure'].quantile(0.25)
+percentile75 = df2['tenure'].quantile(0.75)
+iqr = percentile75 - percentile25
+lower_limit = percentile25 - 1.5 * iqr
+upper_limit = percentile75 + 1.5 * iqr
+df2.shape
+```
+
+### Data Visualization
+(Include all plots as per PDF: pie charts, histograms, bar plots, scatter plots, heatmaps, with identical parameters)
+
+## PACE: Construct Stage
+### Logistic Regression Model
+(Replicate all Logistic Regression training, metrics, confusion matrix exactly as in PDF)
+
+### Decision Tree Model
+(Use same GridSearchCV parameters as PDF)
+
+### Random Forest Model
+(Use same GridSearchCV parameters as PDF)
+
+## PACE: Execute Stage
+### Results & Evaluation
+- Present final metrics tables exactly as PDF
+- Confusion matrix for Random Forest
+- Feature importance plot for Random Forest
+
+## Recommendations
+(Exact wording from PDF conclusions & recommendations)
