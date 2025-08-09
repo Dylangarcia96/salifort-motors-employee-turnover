@@ -1,6 +1,14 @@
 # Salifort Motors Project.
 
 ## PACE: Plan Stage
+
+In this project, I am a data professional working for a fictional company called Salifort Motors.
+Currently, there is a high rate of turnover among Salifort employees (this includes both employees who choose to quit their job and employees who are let go).
+I have been tasked with building a machine learning model that could predict whether an employee will leave the company, and discover the reasons behind their departure. A good model will help the company increase retention and job satisfaction for current employees, and save money and time training new employees. This is meant to be built from a survey carried out by the HR department.
+The survey data includes job title, department, number of projects, average monthly hours, and
+any other relevant data points.
+The dataset that I’ll be using in this lab contains 15,000 rows and 10 columns for the variables listed below.
+
 ### Step 1. Imports
 ```python
 import numpy as np
