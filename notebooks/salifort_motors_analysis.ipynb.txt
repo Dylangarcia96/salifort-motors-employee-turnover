@@ -1,5 +1,38 @@
-# Salifort Motors Project.
+# 🏭 Salifort Motors: Employee Turnover Prediction
 
+<<<<<<< HEAD
+## 📌 Plan Stage
+
+In this project, I am a data professional working for a fictional company called **Salifort Motors**.  
+Currently, there is a high rate of turnover among employees, including both voluntary resignations and terminations.  
+This turnover is costly for the company due to recruitment, training, and productivity loss.
+
+**Objective:**  
+- Build a machine learning model to predict whether an employee will stay or leave.  
+- Identify the most influential factors contributing to turnover.  
+
+**Data Source:**  
+Survey data from HR containing job title, department, number of projects, monthly hours, tenure, work accidents, promotions, and salaries.
+
+**Dataset Size:**  
+- **Rows:** 15,000 employees  
+- **Columns:** 10  
+
+| Variable               | Description |
+|------------------------|-------------|
+| satisfaction_level     | Employee-reported job satisfaction level [0–1] |
+| last_evaluation        | Score of employee’s last performance review [0–1] |
+| number_project         | Number of projects employee contributes to |
+| average_monthly_hours  | Average hours worked per month |
+| tenure                 | Years at the company |
+| work_accident          | Whether the employee experienced a work accident |
+| left                   | Whether the employee left the company |
+| promotion              | Promotion in the last 5 years |
+| department             | Employee's department |
+| salary                 | Employee's salary category |
+
+# Import packages
+=======
 ## PACE: Plan Stage
 
 In this project, I am a data professional working for a fictional company called Salifort Motors.
@@ -11,79 +44,30 @@ The dataset that I’ll be using in this lab contains 15,000 rows and 10 columns
 
 ### Step 1. Imports
 ```python
+>>>>>>> 1f7e61feb8e65f2b0d01d72a0b5e6afd7f5f0a77
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import pickle
+
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier, plot_importance
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score, ConfusionMatrixDisplay, confusion_matrix, classification_report, RocCurveDisplay
 
-```
+from sklearn.metrics import (
+    accuracy_score, f1_score, precision_score, recall_score, roc_auc_score,
+    ConfusionMatrixDisplay, confusion_matrix, classification_report, RocCurveDisplay
+)
 
-### Step 2. Load dataset
-```python
+import pickle
+
+# Visualization style
+sns.set(style='whitegrid')
+
+# Load dataset into a dataframe
 df0 = pd.read_csv("../data/HR_comma_sep.csv")
+
+# Display first 10 rows
 df0.head(10)
-```
-
-## PACE: Analyze Stage
-### Step 2. Data Exploration (Initial EDA & Cleaning)
-```python
-df0.info()
-df0.shape
-df0.describe()
-```
-#### Rename columns
-```python
-df1 = df0.rename(columns={
-    'Department': 'department',
-    'promotion_last_5years': 'promotion',
-    'satisfaction_level': 'satisfaction',
-    'average_montly_hours': 'average_monthly_hours',
-    'time_spend_company': 'tenure',
-    'Work_accident': 'work_accident'
-})
-```
-#### Missing values & duplicates
-```python
-df1.isnull().sum()
-df1.duplicated().sum()
-df2 = df1.drop_duplicates()
-```
-#### Outliers
-```python
-sns.boxplot(df2['tenure'])
-percentile25 = df2['tenure'].quantile(0.25)
-percentile75 = df2['tenure'].quantile(0.75)
-iqr = percentile75 - percentile25
-lower_limit = percentile25 - 1.5 * iqr
-upper_limit = percentile75 + 1.5 * iqr
-df2.shape
-```
-
-### Data Visualization
-(Include all plots as per PDF: pie charts, histograms, bar plots, scatter plots, heatmaps, with identical parameters)
-
-## PACE: Construct Stage
-### Logistic Regression Model
-(Replicate all Logistic Regression training, metrics, confusion matrix exactly as in PDF)
-
-### Decision Tree Model
-(Use same GridSearchCV parameters as PDF)
-
-### Random Forest Model
-(Use same GridSearchCV parameters as PDF)
-
-## PACE: Execute Stage
-### Results & Evaluation
-- Present final metrics tables exactly as PDF
-- Confusion matrix for Random Forest
-- Feature importance plot for Random Forest
-
-## Recommendations
-(Exact wording from PDF conclusions & recommendations)
