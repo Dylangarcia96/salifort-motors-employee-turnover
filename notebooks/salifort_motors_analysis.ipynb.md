@@ -1,0 +1,72 @@
+# 🏭 Salifort Motors: Employee Turnover Prediction
+
+## 📌 Plan Stage
+
+In this project, I am a data professional working for a fictional company called **Salifort Motors**.  
+Currently, there is a high rate of turnover among employees, including both voluntary resignations and terminations.  
+This turnover is costly for the company due to recruitment, training, and productivity loss.
+
+**Objective:**  
+- Build a machine learning model to predict whether an employee will stay or leave.  
+- Identify the most influential factors contributing to turnover.  
+
+**Data Source:**  
+Survey data from HR containing job title, department, number of projects, monthly hours, tenure, work accidents, promotions, and salaries.
+
+**Dataset Size:**  
+- **Rows:** 15,000 employees  
+- **Columns:** 10  
+
+| Variable               | Description |
+|------------------------|-------------|
+| satisfaction_level     | Employee-reported job satisfaction level [0–1] |
+| last_evaluation        | Score of employee’s last performance review [0–1] |
+| number_project         | Number of projects employee contributes to |
+| average_monthly_hours  | Average hours worked per month |
+| tenure                 | Years at the company |
+| work_accident          | Whether the employee experienced a work accident |
+| left                   | Whether the employee left the company |
+| promotion              | Promotion in the last 5 years |
+| department             | Employee's department |
+| salary                 | Employee's salary category |
+
+# Import packages
+=======
+## PACE: Plan Stage
+
+In this project, I am a data professional working for a fictional company called Salifort Motors.
+Currently, there is a high rate of turnover among Salifort employees (this includes both employees who choose to quit their job and employees who are let go).
+I have been tasked with building a machine learning model that could predict whether an employee will leave the company, and discover the reasons behind their departure. A good model will help the company increase retention and job satisfaction for current employees, and save money and time training new employees. This is meant to be built from a survey carried out by the HR department.
+The survey data includes job title, department, number of projects, average monthly hours, and
+any other relevant data points.
+The dataset that I’ll be using in this lab contains 15,000 rows and 10 columns for the variables listed below.
+
+### Step 1. Imports
+```python
+>>>>>>> 1f7e61feb8e65f2b0d01d72a0b5e6afd7f5f0a77
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier, plot_importance
+
+from sklearn.metrics import (
+    accuracy_score, f1_score, precision_score, recall_score, roc_auc_score,
+    ConfusionMatrixDisplay, confusion_matrix, classification_report, RocCurveDisplay
+)
+
+import pickle
+
+# Visualization style
+sns.set(style='whitegrid')
+
+# Load dataset into a dataframe
+df0 = pd.read_csv("../data/HR_comma_sep.csv")
+
+# Display first 10 rows
+df0.head(10)
