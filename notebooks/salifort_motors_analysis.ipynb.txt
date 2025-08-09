@@ -1,6 +1,5 @@
 # 🏭 Salifort Motors: Employee Turnover Prediction
 
-<<<<<<< HEAD
 ## 📌 Plan Stage
 
 In this project, I am a data professional working for a fictional company called **Salifort Motors**.  
