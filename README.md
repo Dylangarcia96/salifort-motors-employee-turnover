@@ -58,3 +58,7 @@ Top predictive features:
 - Experiment with **XGBoost** to compare performance.  
 - Remove features with low predictive power to simplify the model.  
 - Explore **K-means clustering** to segment employee groups for targeted interventions.
+
+## Link to the full project https://github.com/Dylangarcia96/salifort-motors-employee-turnover/blob/main/notebooks/Salifort%20Motors%20Project.ipynb
+
+
